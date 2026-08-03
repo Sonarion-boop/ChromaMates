@@ -9,10 +9,12 @@ Version 1.3.10 targets Town of Us: Mira 1.7.0 and Among Us 2026.6.5. It uses Mir
 - 3,003 named and selectable colors
 - Separate wardrobe sections for each hue, neutrals, palettes, and pride flags
 - 327 static shades in every hue section, ordered from lightest to darkest
-- One animated family color at the end of each hue section - Monochrome, Porphyry, Rubicund, etc.
-- Animated palettes, pride colors, Rainbow
-- Host presets for 52, 100, 252 (default), 500, 1,000, 1,500, 2,000, 2,500, or all 3,003 colors
-- Automatically enabled Colorblind mode so colors are easier to identify in larger lobbies.
+- One animated family color at the end of each hue section
+- Animated palettes, pride colors, Rainbow, and Monochrome
+- Automatic color-name labels so similar shades are still easy to identify
+- Host presets for 52, 100, 252, 500, 1,000, 1,500, 2,000, 2,500, or all 3,003 colors
+
+The Neutrals section runs from white to black. Its final color, Monochrome, moves smoothly down that same range and back again. Rainbow runs forward through the spectrum instead of reversing at the end.
 
 ## Using it in a lobby
 
@@ -20,11 +22,9 @@ The 52-color preset contains the 18 vanilla colors and TOU:M's 34 colors. A lobb
 
 The host shares the active preset, catalog fingerprint, and animation clock only with clients that Reactor has already identified as running ChromaMates. Clients never probe an unknown host, and extended-color messages are never broadcast to clients without the mod. The handshake repairs and synchronizes color state; it does not hook or stop the Start button. A late or mismatched reply also does not turn players white, because valid colors stay renderable while the selector catches up.
 
-If a player joins with a color outside the host's preset, the host normally chooses the closest allowed shade by comparing both the body and shadow colors. Fortegreen is kept as a hidden last-resort color at ID 3007. It does not appear in the wardrobe and is not counted among the 3,003 selectable colors. Fortegreen was chosen as the classic among us color not found color.
+If a player joins with a color outside the host's preset, the host normally chooses the closest allowed shade by comparing both the body and shadow colors. Fortegreen is kept as a hidden last-resort color at ID 3007. It does not appear in the wardrobe and is not counted among the 3,003 selectable colors.
 
 Color IDs 252 through 255 are left unused by the wardrobe because the network protocol reserves them. The remaining shared IDs stay in the same order no matter which host preset is selected. Optional color plugins are placed after the shared ChromaMates range so they cannot rearrange multiplayer IDs.
-
-ALso, there is a known bug where when a player selects a color in the menu that is outside of the normal 252 color limit, it will not update their wardrobe preview. I have spent like 2 days trying to bugfix this, it's the entire reason the mod is 1.3.9 instead of 1.3.0 for the update to the most recent among us version.
 
 ## Outside a lobby
 
@@ -33,16 +33,6 @@ The main-menu wardrobe always shows the full catalog. Among Us normally stores a
 ## Animated colors
 
 Animation frames are rendered locally from a shared lobby clock. Clients send the color ID and clock epoch instead of a stream of frame-by-frame messages. This keeps animated colors in step without adding constant network traffic.
-
-## Expanded Lobbies!
-
-Due to the mod allowing for substantially more color options, the host can drastically increase the max size of a lobby to adjust as needed. This'll also work with the planned future in-game queue mod I am working on, but it'll be designed so that they're encouraged to be used together, and the queue mod's settings will overwrite the settings in this one.
-
-## Further planned features!
-
-Custom Name Colors - Mira Friendly!
-
-One of the biggest issues with colored names is when roles like Snitch are involved, whose roles change the color of a player's name. How this is planned is that players will still be able to make custom names for themselves, however the hex codes will be overwritten when these effects are applied, thereby allowing players to more effectively see things in game while still allowing them to have their favorite colors and details in the game.
 
 ## Source layout
 
